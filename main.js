@@ -1,41 +1,35 @@
-const square = document.querySelector('div');
-document.body.appendChild(square);
+const div = document.createElement('div');
 
-let size = 100;
 let grow = true;
 
-square.style.width = size + 'px';
-square.style.height = size + 'px';
-square.style.backgroundColor = 'pink';
+let size = 10 //wielkość kwadratu
+div.style.width = size + 'px';
+div.style.height = size + 'px';
+div.style.backgroundColor = 'blue';
 
+document.body.appendChild(div);
 
-window.addEventListener('scroll', function(){
-    if(grow == true){
-    size +=5
-    square.style.width = size +"px";
-    square.style.height = size +"px";
-    
+window.addEventListener('scroll', function (){
+    if(grow){
+ size+= 5
+ div.style.width = size + 'px';
+ div.style.height = size + 'px';
+ div.style.borderRadius = '0%';
+    }else{
+        size-=5
+        div.style.width = size + 'px';
+ div.style.height = size + 'px';
+ 
     }
-    else{
-    size -=5
-    square.style.width = size +"px";
-    square.style.height = size +"px";
+    if(size >=window.innerWidth/2 ){
+        grow = !grow;
+        div.style.backgroundColor = 'yellow';
+        div.style.borderRadius = '50%';
+       
     }
-    if(size >= window.innerHeight / 2){
-        grow = false
-        
-    }
-    else if(size == 0){
-        grow = true
-    }
-    if(size >= 200){
-        square.style.backgroundColor = "green";
-        square.style.borderRadius = "50%";
-      
-    }
-    else{
-        square.style.backgroundColor = "pink";
-        square.style.borderRadius = "0%";
+    else if(size<=0){
+        grow = true;
+               div.style.backgroundColor = 'blue';
     }
    
 })
